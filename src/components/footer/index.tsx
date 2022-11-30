@@ -11,7 +11,7 @@ const Footer = () => {
             sx={{
                 width: '100%',
                 borderTop: isBrowser ? `1px solid ${GRAYef}` : 'none',
-                p: isBrowser ? '40px 0 60px 0' : '30px 16px 48px 16px',
+                p: isBrowser ? '40px 30px 60px 30px' : '30px 16px 48px 16px',
                 boxSizing: 'border-box',
             }}
         >
