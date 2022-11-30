@@ -4,7 +4,7 @@ import {
     PC_IMG_HEADER_LOGO,
     M_IMG_HEADER_LOGO_BK,
 } from '../../constants/images'
-import { GotoButton, NetworkIndicator, OutlinedBlueButton } from '../../styles'
+import { GotoButton, OutlinedBlueButton } from '../../styles'
 import { BrowserView, MobileView } from 'react-device-detect'
 import MenuIcon from '@mui/icons-material/Menu'
 import CloseIcon from '@mui/icons-material/Close'
@@ -16,20 +16,26 @@ import Divider from '@mui/material/Divider'
 import ListItem from '@mui/material/ListItem'
 import CallMadeIcon from '@mui/icons-material/CallMade'
 import useGlobalState from '../../hooks/useGlobalState'
+import NetworkSelect from '../select/NetworkSelect'
 
 const Header = () => {
-    const [open, setOpen] = useState(false)
-    // const [headerState, setHeaderState] = useState(0)
+    const [idx, setIdx] = useState(0)
 
-    const { headerState } = useGlobalState()
+    const { headerState, mobileHeaderOpen, setMobileHeaderOpen } =
+        useGlobalState()
 
     // 헤더상태값 구분: 0(투명) 1(블러) 2(백색)
     // PC에서는 0-1-2, 모바일은 0-2로 사용한다. 뷰 값이 다르니까 intersection에서 다르게 처리하면 될 듯.
 
     const HEADER_BG_SX = [
-        { backgroundColor: 'transparent', backdropFilter: 'blur(0px)' },
         {
-            backgroundColor: 'rgba(255, 255, 255, 0.16)',
+            backgroundColor: mobileHeaderOpen ? '#fff' : 'transparent',
+            backdropFilter: 'blur(0px)',
+        },
+        {
+            backgroundColor: mobileHeaderOpen
+                ? '#fff'
+                : 'rgba(255, 255, 255, 0.16)',
             backdropFilter: 'blur(30px)',
             boxShadow: '0 3px 6px 0 rgba(0, 0, 0, 0.16)',
         },
@@ -100,7 +106,13 @@ const Header = () => {
                             />
                         </Stack>
 
-                        <NetworkIndicator network={'Testnet'} />
+                        <Stack
+                            direction="column"
+                            gap="10px"
+                            sx={{ position: 'relative' }}
+                        >
+                            <NetworkSelect idx={idx} setIdx={setIdx} />
+                        </Stack>
                     </Stack>
                 </Box>
             </BrowserView>
@@ -111,7 +123,7 @@ const Header = () => {
                         position: 'fixed',
 
                         width: '100%',
-                        borderBottom: open ? '#fff' : 'unset',
+                        borderBottom: mobileHeaderOpen ? '#fff' : 'unset',
                         display: 'flex',
                         justifyContent: 'center',
                         height: '58px',
@@ -128,7 +140,7 @@ const Header = () => {
                         <Box>
                             <img
                                 src={
-                                    open || headerState > 0
+                                    mobileHeaderOpen || headerState > 0
                                         ? M_IMG_HEADER_LOGO_BK
                                         : M_IMG_HEADER_LOGO
                                 }
@@ -137,10 +149,10 @@ const Header = () => {
                             />
                         </Box>
                         <Box>
-                            {open ? (
+                            {mobileHeaderOpen ? (
                                 <CloseIcon
                                     sx={{ fontSize: '32px', color: GRAY50 }}
-                                    onClick={() => setOpen(false)}
+                                    onClick={() => setMobileHeaderOpen(false)}
                                 />
                             ) : (
                                 <MenuIcon
@@ -149,7 +161,7 @@ const Header = () => {
                                         color:
                                             headerState > 0 ? '#000' : '#fff',
                                     }}
-                                    onClick={() => setOpen(true)}
+                                    onClick={() => setMobileHeaderOpen(true)}
                                 />
                             )}
                         </Box>
@@ -157,8 +169,8 @@ const Header = () => {
                 </Box>
                 <Drawer
                     anchor="top"
-                    open={open}
-                    onClose={() => setOpen(false)}
+                    open={mobileHeaderOpen}
+                    onClose={() => setMobileHeaderOpen(false)}
                     sx={{
                         '& .MuiDrawer-paper': {
                             boxShadow: 'none',
