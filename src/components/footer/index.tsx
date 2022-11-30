@@ -1,6 +1,6 @@
 import { Box, Divider, Stack, Typography } from '@mui/material'
 import { isBrowser, isMobile } from 'react-device-detect'
-import { IMG_FOOTER_LOGO } from '../../constants/images'
+import { IMG_LOGO_BK } from '../../constants/images'
 import { GRAYef, Lato } from '../../constants/theme'
 import { FooterGotoButton } from '../../styles'
 
@@ -24,7 +24,7 @@ const Footer = () => {
                     gap={isBrowser ? 0 : '22px'}
                 >
                     <Box>
-                        <img src={IMG_FOOTER_LOGO} alt="" />
+                        <img src={IMG_LOGO_BK} alt="" />
                     </Box>
                     <Stack direction="row" gap={isBrowser ? '80px' : '20px'}>
                         <FooterGotoButton menu="verify" />

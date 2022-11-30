@@ -56,11 +56,14 @@ export const RedirectButton = styled(Button)(({ theme }) => ({
 export const OutlinedBlueButton = ({
     title,
     sx,
+    onClick,
 }: {
     title: string
     sx?: IKeyValue
+    onClick?: any
 }) => (
     <Stack
+        onClick={onClick}
         direction="row"
         justifyContent="center"
         alignItems="center"
@@ -171,8 +174,17 @@ export const ContainedBlueButton = ({
     </Stack>
 )
 
-export const GotoButton = ({ menu, sx }: { menu: string; sx?: IKeyValue }) => (
+export const GotoButton = ({
+    menu,
+    sx,
+    onClick,
+}: {
+    menu: string
+    sx?: IKeyValue
+    onClick?: any
+}) => (
     <Stack
+        onClick={onClick}
         className="buttonHover"
         direction="row"
         alignItems="center"
