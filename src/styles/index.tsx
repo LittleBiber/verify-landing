@@ -174,7 +174,7 @@ export const ContainedBlueButton = ({
     </Stack>
 )
 
-export const GotoButton = ({
+export const PCHeaderButton = ({
     menu,
     sx,
     onClick,
@@ -200,7 +200,7 @@ export const GotoButton = ({
                 fontFamily: Lato,
                 fontWeight: 'bold',
                 fontSize: '16px',
-                lineHeight: '16px',
+                lineHeight: 1.25,
                 letterSpacing: '-0.16px',
                 textTransform: 'uppercase',
             }}

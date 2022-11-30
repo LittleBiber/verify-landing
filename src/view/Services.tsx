@@ -69,7 +69,8 @@ const Services = () => {
                                 Meet the various services of FIRMA VERIFY.
                             </SectionHead>
                         </Stack>
-                        <Stack direction="row" alignItems="center" gap="10px">
+                        {/* //! 페이지 정보는 5개부터 추가하므로, 일단 비활성화 */}
+                        {/* <Stack direction="row" alignItems="center" gap="10px">
                             <ArrowCircleLeftOutlinedIcon
                                 sx={{ color: GRAYa0, fontSize: '28px' }}
                             />
@@ -102,12 +103,13 @@ const Services = () => {
                             <ArrowCircleRightOutlinedIcon
                                 sx={{ color: GRAYa0, fontSize: '28px' }}
                             />
-                        </Stack>
+                        </Stack> */}
                     </Stack>
                     <Box sx={{ pb: '60px' }}>
                         <ServiceList />
                     </Box>
-                    <Indicator length={1} nowIdx={0} setIdx={() => {}} />
+                    {/* //! 페이지 정보는 5개부터 추가하므로, 일단 비활성화 */}
+                    {/* <Indicator length={1} nowIdx={0} setIdx={() => {}} /> */}
                 </Stack>
             </BrowserView>
             <MobileView>
