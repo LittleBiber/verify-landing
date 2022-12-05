@@ -24,13 +24,13 @@ const NetworkSelect = ({
     const BACKGROUND_SX = [
         {
             backdropFilter: 'blur(30px)',
-            backgroundColor: 'rgba(255,255,255,0.2)',
+            backgroundColor: '#3079D6', //'rgba(48, 121, 214, 0.2)',
         },
         {
             backgroundColor: '#3079D6', // '#3078d6',
         },
         {
-            backgroundColor: '#397fda',
+            backgroundColor: '#3079D6',
         },
     ]
 
