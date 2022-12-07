@@ -125,13 +125,13 @@ const Header = () => {
                 </Box>
             </BrowserView>
             <MobileView>
-                <Box
-                    className="allTransition1s"
+                <Stack
+                    // className="allTransition1s"
+                    direction="column"
                     sx={{
                         position: 'fixed',
                         width: '100%',
-                        borderBottom: mobileHeaderOpen ? '#fff' : 'unset',
-                        display: 'flex',
+                        // borderBottom: mobileHeaderOpen ? '#fff' : 'unset',
                         justifyContent: 'center',
                         height: '58px',
                         zIndex: 100,
@@ -142,7 +142,10 @@ const Header = () => {
                         direction="row"
                         alignItems="center"
                         justifyContent="space-between"
-                        sx={{ width: '100%', p: '14px 14px' }}
+                        sx={{
+                            width: '100%',
+                            p: '14px 14px',
+                        }}
                     >
                         <Stack
                             alignItems="center"
@@ -163,6 +166,9 @@ const Header = () => {
                             alignItems="center"
                             justifyContent="center"
                             sx={{ height: '100%' }}
+                            onClick={() =>
+                                setMobileHeaderOpen(!mobileHeaderOpen)
+                            }
                         >
                             {mobileHeaderOpen ? (
                                 <img
@@ -177,13 +183,76 @@ const Header = () => {
                                         color:
                                             headerState > 0 ? '#000' : '#fff',
                                     }}
-                                    onClick={() => setMobileHeaderOpen(true)}
                                 />
                             )}
                         </Stack>
                     </Stack>
-                </Box>
-                <Drawer
+                    <Box
+                        className="drawerOpen"
+                        sx={{
+                            position: 'absolute',
+                            top: '58px',
+                            width: '100%',
+                            height: mobileHeaderOpen ? '400px' : '0',
+                            overflow: 'hidden',
+                        }}
+                    >
+                        <Box
+                            sx={{
+                                padding: '0 16px 20px 16px',
+                                background: '#fff',
+                            }}
+                        >
+                            {['Verify', 'api docs', 'ecosystem'].map(
+                                (text, index) => (
+                                    <>
+                                        <ListItem
+                                            key={text}
+                                            sx={{
+                                                p: '16px 0',
+                                                color: '#4a4d51',
+                                                ':hover': {
+                                                    color: '#161718',
+                                                },
+                                            }}
+                                        >
+                                            <Typography
+                                                sx={{
+                                                    fontSize: '16px',
+                                                    fontFamily: Lato,
+                                                    fontWeight: 600,
+                                                    lineHeight: 1.25,
+                                                    letterSpacing: '-0.16px',
+                                                    textTransform: 'uppercase',
+                                                }}
+                                            >
+                                                {text}
+                                            </Typography>
+                                            <img
+                                                src={IC_OPEN_IN_NEW_DARK_GREY}
+                                                alt=""
+                                                style={{ width: '20px' }}
+                                            />
+                                        </ListItem>
+                                    </>
+                                )
+                            )}
+                            <OutlinedBlueButton
+                                textOnly
+                                title="Contact"
+                                sx={{
+                                    width: 'calc(100% - 2px)',
+                                    height: '48px',
+                                    fontSize: '16px',
+                                    fontWeight: 600,
+                                    mt: '28px',
+                                }}
+                            />
+                        </Box>
+                    </Box>
+                </Stack>
+
+                {/* <Drawer
                     anchor="top"
                     open={mobileHeaderOpen}
                     onClose={() => setMobileHeaderOpen(false)}
@@ -231,11 +300,7 @@ const Header = () => {
                                     style={{ width: '20px' }}
                                 />
                             </ListItem>
-                            {/* {index !== 2 && (
-                                <Divider
-                                    sx={{ border: `1px dashed ${GRAYef}` }}
-                                />
-                            )} */}
+                           
                         </>
                     ))}
                     <OutlinedBlueButton
@@ -249,7 +314,7 @@ const Header = () => {
                             mt: '28px',
                         }}
                     />
-                </Drawer>
+                </Drawer> */}
             </MobileView>
         </>
     )
